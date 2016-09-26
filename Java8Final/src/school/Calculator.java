@@ -11,7 +11,7 @@ public class Calculator {
     
     public static void main(String[] args) {
     
-        System.out.println("Enter student number: ");
+        System.out.print("Enter number of student : ");
         
         //wait for input
         Scanner scanner = new Scanner(System.in);
@@ -21,22 +21,24 @@ public class Calculator {
         
         for( int i=0; i < numberOfStudent; i++) {
           Student student = new Student();  
-          System.out.println("Enter student name?:");
+          System.out.print("Enter student name?: ");
           String studentName = new Scanner(System.in).nextLine();
           student.setName(studentName);
           Set<String> keys = student.gpa.subjectGpa.keySet();
           
           for (String subjName : keys) {
-                System.out.println("Enter PGA for subject " + subjName);
-                int gpa = new Scanner(System.in).nextInt();
-                student.gpa.subjectGpa.put(subjName, gpa);
-            }   
-          
+                int gpa;
+                do {
+                    System.out.print("Enter PGA for subject " + subjName + " : ");
+                    gpa = new Scanner(System.in).nextInt();
+                    student.gpa.subjectGpa.put(subjName, gpa);
+                } while(gpa < 0 || gpa > 4);
+          }   
           studentMap.put(student.name, student);
         }      
                
         for(;;) {
-            System.out.println("Enter student name for GPA:?");
+            System.out.print("Enter student name for GPA? : ");
             String nameGPA = new Scanner(System.in).nextLine();
             if(nameGPA.equals("0")) {
                 break;
@@ -46,7 +48,7 @@ public class Calculator {
             if(student !=null) {
                 System.out.println("Name:" +   student.name + " get " + student.gpa.getGpa());
             }else {
-                System.out.println("Not found");
+                System.out.println("Student not found !!!");
             }
         }
     }

@@ -1,5 +1,6 @@
 package school;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Set;
@@ -14,13 +15,13 @@ public class Gpa {
         subjectGpa.put("Eng",4);
     }
     
-    public double getGpa() {
+    public String getGpa() {
         int numberOfSubject = subjectGpa.size();
         Set<String> keys = subjectGpa.keySet();
           double total =0;
           for (String subjName : keys) {                                
                 total += subjectGpa.get(subjName);
           }  
-          return total/numberOfSubject;
+          return new DecimalFormat("0.00").format(total/numberOfSubject);
     }
 }
